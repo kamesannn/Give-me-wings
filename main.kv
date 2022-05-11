@@ -1,0 +1,18 @@
+#<Label>
+#    font_size: 58
+
+<MainLayout>:
+    canvas.before:
+        Color:
+            rgba: (86/255, 164/255, 255/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: "Give Me Wings"
+        font_size: 40
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos: self.pos

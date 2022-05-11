@@ -1,35 +1,24 @@
+import kivy
+#kivy.require('2.1.0') # replace with your current kivy version !
+
 from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.textinput import TextInput
-from kivy.uix.button import Button
+from kivy.uix.widget import Widget
+from kivy.properties import ObjectProperty
+from kivy.lang import Builder
+from kivy.core.text import LabelBase
+from kivy.core.window import Window
 
+LabelBase.register(name=YujiBoku,
 
+Builder.load_file('main.kv')
 
-class MyGridLayout(GridLayout):
-    def __init__(self, **kwargs):
-        super(MyGridLayout, self).__init__(**kwargs)
-
-        self.cols = 1
-
-        self.add_widget(Label(text="Name: ", font_size=32))
-        self.name = TextInput(multiline=False)
-        self.add_widget(self.name)
-
-        self.enter = Button(text="Enter", font_size=32)
-
-        self.enter.bind(on_press=self.press)
-        self.add_widget(self.enter)
-
-    def press(self, instance):
-        name = self.name.text
-        print(f"Hello {name}!!")
-
+class MainLayout(Widget):
+    pass
 
 class MyApp(App):
     def build(self):
-        self.title = "window"
-        return MyGridLayout()
+        #Window.clearcolor = (1,0,0,1)
+        return MainLayout()
 
 
 if __name__ == '__main__':
