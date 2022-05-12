@@ -9,12 +9,21 @@
     BoxLayout:
         orientation: "vertical"
         size: root.width, root.height
+        padding: 50
+        spacing: 50
+
+        Button:
+            text: "Start"
+            size: 100, 100
+            size_hint: None, None
+
 
         Label:
             text: "Give Me Wings"
-            text: "LAlalaa"
             font_size: 40
             font_name: "YujiBoku-Regular"
+            size_hint: 0.5, 0.4
+            pos_hint: {"x":.4, "top":1}
 
             canvas.before:
                 Rectangle:
