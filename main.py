@@ -1,14 +1,10 @@
 import kivy
-#kivy.require('2.1.0') # replace with your current kivy version !
-
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.core.text import LabelBase
 from kivy.core.window import Window
-
-LabelBase.register(name=YujiBoku,
 
 Builder.load_file('main.kv')
 

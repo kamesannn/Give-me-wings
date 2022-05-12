@@ -1,5 +1,3 @@
-#<Label>
-#    font_size: 58
 
 <MainLayout>:
     canvas.before:
@@ -8,11 +6,16 @@
         Rectangle:
             pos: self.pos
             size: self.size
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
 
-    Label:
-        text: "Give Me Wings"
-        font_size: 40
-        canvas.before:
-            Rectangle:
-                size: self.size
-                pos: self.pos
+        Label:
+            text: "Give Me Wings"
+            font_size: 40
+            font_name: "YujiBoku-Regular"
+
+            canvas.before:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
