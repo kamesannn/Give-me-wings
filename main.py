@@ -3,6 +3,7 @@ from kivy.core.window import Window
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.uix.image import Image
+from kivy.clock import Clock
 
 
 class Background(Widget):
@@ -16,10 +17,18 @@ class Background(Widget):
         self.cloud_texture.wrap = 'repeat'
         self.cloud_texture.uvsize = (Window.width / self.cloud_texture.width, -1)
 
+    def scroll_textures(self, time_passed):
+        # Update the uvpos of the texture
+
+        # Redraw the texture
+        print("scroll")
+
     pass
 
 
 class GiveMeWings(App):
+    def on_start(self):
+        Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/2.)
     pass
 
 
