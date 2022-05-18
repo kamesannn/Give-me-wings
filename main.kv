@@ -1,4 +1,14 @@
 
+<Button>
+    font_size: 38
+    font_name: "Yomogi-Regular"
+    size_hint: (0.3, 0.2)
+    background_normal: ''
+    background_color: (196/255, 196/255, 196/255, 1)
+    color: (0/255, 0/255, 0/255, 1)
+    border: (30, 30, 30, 30)
+
+
 <MainLayout>:
     canvas.before:
         Color:
@@ -12,28 +22,26 @@
         padding: 50
         spacing: 50
 
+        Label:
+            text: "Give Me\n  Wings"
+            color: 1,0,1,1
+            font_size: 75
+            font_name: "YujiBoku-Regular"
+            size_hint: 0.9, 0.9
+            pos_hint: {"center_x": 0.7, "center_y": 0.95}
+
 
         Button:
             text: "Start"
-            size: 200, 60
-            font_size: 38
-            size_hint: None, None
-            pos_hint: {"x":.7, "top":3}
-            font_name: "Yomogi-Regular"
+            pos_hint: {"center_x": 0.8, "center_y": 0.9}
+
+
 
         Button:
             text: "Settings"
-            size: 200, 60
-            font_size: 38
-            size_hint: None, None
-            pos_hint: {"x":.7, "top":3}
-            font_name: "Yomogi-Regular"
+            pos_hint: {"center_x": 0.8, "center_y": 0.9}
 
 
-        Label:
-            text: "Give Me Wings"
-            font_size: 50
-            font_name: "YujiBoku-Regular"
-            size_hint: None, None
-            pos_hint: {"x":.5, "top":6}
+
+
 
