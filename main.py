@@ -1,28 +1,34 @@
-
 from kivy.app import App
-# from kivy.uix.widget import Widget
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.label import Label
-from kivy.properties import ObjectProperty
 from kivy.lang import Builder
-from kivy.core.text import LabelBase
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.image import Image
 from kivy.core.window import Window
-from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
-Builder.load_file('main.kv')
+# Window.size = (1200, 800)
 
-#class FloatLayout(FloatLayout):
-#    pass
-class MainLayout(BoxLayout):
+
+# Define different screens
+class MainWindow(Screen):
     pass
 
-class MyApp(App):
+
+class SettingsWindow(Screen):
+    pass
+
+
+class WindowManager(ScreenManager):
+    pass
+
+
+# Designate kv design file
+kv = Builder.load_file('main.kv')
+
+
+class GiveMeWingsApp(App):
     def build(self):
-        #Window.clearcolor = (1,0,0,1)
-        return MainLayout()
+        return kv
 
 
-if __name__ == '__main__':
-    MyApp().run()
+if __name__ == "__main__":
+    GiveMeWingsApp().run()
