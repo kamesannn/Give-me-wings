@@ -8,6 +8,7 @@ WindowManager:
     pos_hint: {"center_x": 0.8, "center_y": 1}
     font_name: "Yomogi-Regular"
     font_size: 38
+    color: 0,0,0,1
     background_color: (1,0,0,0)
     background_normal: ''
     canvas.before:
@@ -79,17 +80,38 @@ WindowManager:
                 radius: [18]
 
     Button:
-        size_hint: (0.2, 0.1)
-        pos_hint: {"center_x": 0.22, "center_y": 0.73}
+        size_hint: (0.16, 0.1)
+        pos_hint: {"center_x": 0.23, "center_y": 0.73}
         font_size: 25
-        # background_normal: ''
-        background_color: (2.55, 1.62, 0.81, 1)
+        background_color: 1,0,0,0
         text: "Back"
+        color: 0,0,0,1
         on_press: print("back to main")
         on_release:
             app.root.current = "main"
             root.manager.transition.direction = "left"
 
+    Image:
+        source: 'images/arrow.png'
+        size_hint: (0.06, 0.06)
+        # allow_stretch: True
+        pos_hint: {"center_x": 0.16, "center_y": 0.73}
+
+    Label:
+        text: "Music volume"
+        color: 0,0,0,1
+        font_size: 27
+        font_name: "Yomogi-Regular"
+        size_hint: (0.9, 0.9)
+        pos_hint: {"center_x": 0.26, "center_y": 0.56}
+
+    Label:
+        text: "Sound effect"
+        color: 0,0,0,1
+        font_size: 27
+        font_name: "Yomogi-Regular"
+        size_hint: (0.9, 0.9)
+        pos_hint: {"center_x": 0.26, "center_y": 0.39}
 
 
 
