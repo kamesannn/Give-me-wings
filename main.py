@@ -4,10 +4,11 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.uix.image import Image
 from kivy.clock import Clock
+from random import randint
 
 
 class Background(Widget):
-    cloud_texture = ObjectProperty(None)
+    # cloud_texture = ObjectProperty(None)
     floor_texture = ObjectProperty(None)
 
     def __init__(self, **kwargs):
@@ -40,8 +41,22 @@ class Background(Widget):
 
 
 class GiveMeWings(App):
+    rec = []
+
     def on_start(self):
         Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/60.)
+
+        num_rec = 5
+        distance_between_rec = Window.width / (num_rec - 1)
+        for i in range(num_rec):
+            rec = Pipe()
+            rec.rec_center = randint(70 + 100, self.root.height - 100)
+            rec.rec_hint = (None, None)
+            rec.pos = (Window.width + i*distance_between_rec, 70)
+            rec.size = (70, self.root.height - 70)
+
+            self.rec.append(rec)
+            self.root.add_widget(rec)
     pass
 
 
