@@ -113,6 +113,15 @@ WindowManager:
         size_hint: (0.9, 0.9)
         pos_hint: {"center_x": 0.26, "center_y": 0.39}
 
+    Slider:
+        id: volume_bar
+        min: 1
+        max: 100
+        value: 0
+        orientation: 'horizontal'
+        pos_hint: {'center_x': 0.2, 'center_y': 0.05}
+        size_hint: (0.2,0.2)
+        # on_value: root.EffectVal(self.value)
 
 
 

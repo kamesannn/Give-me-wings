@@ -5,6 +5,8 @@ from kivy.core.audio import SoundLoader
 from kivy.uix.image import Image
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.slider import Slider
+from kivy.uix.switch import Switch
 
 
 # Window.size = (1200, 800)
@@ -22,6 +24,12 @@ class SettingsWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
+    def build(self):
+        self.music = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
+        self.music.play()
+
+
+
 
 # Designate kv design file
 kv = Builder.load_file('main.kv')
@@ -29,9 +37,24 @@ kv = Builder.load_file('main.kv')
 
 class GiveMeWingsApp(App):
 
-    def build(self):
-        self.music = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
-        self.music.play()
+    def EffectVal(self, value):
+        self._volume(value)
+
+    def _volume(self, vol):
+        print('_volume')
+        vol = round(vol)
+        vol_value = vol / 100
+
+        # self.volume_text.text = str(vol)
+        self.volume_bar.value = vol
+
+        if not self.sound:
+            return
+
+        self.sound.volume = vol_value
+
+
+
 
         return kv
 
