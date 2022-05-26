@@ -24,9 +24,7 @@ class SettingsWindow(Screen):
 class WindowManager(ScreenManager):
     pass
 
-    def build(self):
-        self.music = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
-        self.music.play()
+
 
 
 
@@ -37,22 +35,27 @@ kv = Builder.load_file('main.kv')
 
 class GiveMeWingsApp(App):
 
-    def EffectVal(self, value):
-        self._volume(value)
+    def build(self):
+        
+        self.music = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
+        self.music.play()
 
-    def _volume(self, vol):
-        print('_volume')
-        vol = round(vol)
-        vol_value = vol / 100
+        # self.music.volume(kv.on_value())
+        def EffectVal(self, value):
+            self._volume(value)
 
-        # self.volume_text.text = str(vol)
-        self.volume_bar.value = vol
+        def _volume(self, vol):
+            print('_volume')
+            vol = round(vol)
+            vol_value = vol / 100
 
-        if not self.sound:
-            return
+            # self.volume_text.text = str(vol)
+            self.volume_bar.value = vol
 
-        self.sound.volume = vol_value
+            if not self.music:
+                return
 
+            self.music.volume = vol_value
 
 
 
