@@ -6,6 +6,7 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
+from kivy.properties import NumericProperty
 
 
 class Background(Widget):
@@ -40,12 +41,52 @@ class Background(Widget):
         texture = self.property('floor_texture')
         texture.dispatch(self)
 
+class Character(Image):
+    velocity = NumericProperty(0)
+
+    def on_touch_down(self, touch):
+        self.source = "run1.png"
+        self.velocity = 150
+        super().on_touch_down(touch)
+
+    def on_touch_up(self, touch):
+        self.source = "jump1.png"
+        super().on_touch_up(touch)
+
 
 class GiveMeWings(App):
     pipes = []
+    GRAVITY = 300
+
+    def move_character(self, time_passed):
+        character = self.root.ids.character
+        character.y = character.y + character.velocity * time_passed
+        character.velocity = character.velocity - self.GRAVITY * time_passed
+        self.check_collision()
+
+    def check_collision(self):
+        character = self.root.ids.character
+        # Go through each pipe and check if it collides
+        for pipe in self.pipes:
+            if pipe.collide_widget(character):
+                self.game_over()
+
+    def game_over(self):
+        self.root.ids.character.pos = (70, ((self.root.height - 96) / 4 - 33))
+        for pipe in self.pipes:
+            self.root.remove_widget(pipe)
+        self.frames.cancel()
+
+    def next_frame(self, time_passed):
+        self.move_character(time_passed)
+        self.move_pipes(time_passed)
+        self.root.ids.background.scroll_textures(time_passed)
 
     def on_start(self):
-        Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/60.)
+        self.pipes = []
+        # Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/60.)
+        # Clock.schedule_interval(self.move_character, 1/60.)
+        self.frames = Clock.schedule_interval(self.next_frame, 1/60.)
 
         # Create pipes
         num_pipes = 5
@@ -61,7 +102,7 @@ class GiveMeWings(App):
             self.root.add_widget(pipe)
 
         # Move the pipes
-        Clock.schedule_interval(self.move_pipes, 1/60.)
+        # Clock.schedule_interval(self.move_pipes, 1/60.)
 
     def move_pipes(self, time_passed):
         for pipe in self.pipes:
