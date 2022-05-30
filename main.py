@@ -42,16 +42,31 @@ class Background(Widget):
         texture.dispatch(self)
 
 class Character(Image):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._keyboard = Window.request_keyboard(self._on_keyboard_closed, self)
+        self._keyboard.bind(on_key_down=self._on_key_down)
+
+    def _on_keyboard_closed(self):
+        self._keyboard.unbind(on_key_down=self._on_key_down)
+        self._keyboard = None
+
     velocity = NumericProperty(0)
 
-    def on_touch_down(self, touch):
-        self.source = "run1.png"
-        self.velocity = 150
-        super().on_touch_down(touch)
+    def character_image(self, time_passed):
+        if time_passed % 2 == 0:
+            self.source = "run1.png"
+        else:
+            self.source = "run2.png"
 
-    def on_touch_up(self, touch):
-        self.source = "jump1.png"
-        super().on_touch_up(touch)
+    def _on_key_down(self,keyboard,keycode,text,modifiers):
+
+        if text == "w":
+            self.source = "jump1.png"
+            self.velocity = 150
+        if text == "s":
+            self.source = "slide.png"
+            self.velocity = -100
 
 
 class GiveMeWings(App):
