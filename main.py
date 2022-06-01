@@ -41,6 +41,7 @@ class Background(Widget):
         texture = self.property('floor_texture')
         texture.dispatch(self)
 
+
 class Character(Image):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -53,14 +54,13 @@ class Character(Image):
 
     velocity = NumericProperty(0)
 
-    def character_image(self, time_passed):
-        if time_passed % 2 == 0:
-            self.source = "run1.png"
-        else:
-            self.source = "run2.png"
+    # def character_image(self, time_passed):
+    #     if time_passed % 2 == 0:
+    #         self.source = "run1.png"
+    #     else:
+    #         self.source = "run2.png"
 
     def _on_key_down(self,keyboard,keycode,text,modifiers):
-
         if text == "w":
             self.source = "jump1.png"
             self.velocity = 150
@@ -79,12 +79,23 @@ class GiveMeWings(App):
         character.velocity = character.velocity - self.GRAVITY * time_passed
         self.check_collision()
 
+        if character.y == ((Window.height - 96) / 4 - 33):
+            self.GRAVITY = 0
+        if character.y > ((Window.height - 96) / 4 - 33) and self.GRAVITY >= 0:
+            self.GRAVITY = 0
+            character.y = ((Window.height - 96) / 4 - 33)
+
     def check_collision(self):
         character = self.root.ids.character
         # Go through each pipe and check if it collides
         for pipe in self.pipes:
             if pipe.collide_widget(character):
-                self.game_over()
+                # is_colliding = True
+                # Check if character is between the gap
+                if character.y < (pipe.pipe_center - pipe.GAP_SIZE / 2.0):
+                    self.game_over()
+                if character.top > (pipe.pipe_center + pipe.GAP_SIZE / 2.0):
+                    self.game_over()
 
     def game_over(self):
         self.root.ids.character.pos = (70, ((self.root.height - 96) / 4 - 33))
@@ -104,8 +115,8 @@ class GiveMeWings(App):
         self.frames = Clock.schedule_interval(self.next_frame, 1/60.)
 
         # Create pipes
-        num_pipes = 5
-        distance_between_pipes = Window.width / (num_pipes - 1)
+        num_pipes = 200
+        distance_between_pipes = Window.width / 3
         for i in range(num_pipes):
             pipe = Pipe()
             pipe.pipe_center = randint(96 + 100, self.root.height - 100)
@@ -123,19 +134,13 @@ class GiveMeWings(App):
         for pipe in self.pipes:
             pipe.x -= time_passed * 100
         # Check if we need to reposition the pipe on the right side
-        num_pipes = 5
-        distance_between_pipes = Window.width / (num_pipes - 1)
+        distance_between_pipes = Window.width / 3
 
         pipe_xs = list(map(lambda pipe: pipe.x, self.pipes))
         right_most_x = max(pipe_xs)
         if right_most_x <= Window.width - distance_between_pipes:
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
-
-
-
-    pass
-
 
 
 GiveMeWings().run()
