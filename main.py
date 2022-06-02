@@ -25,10 +25,6 @@ class WindowManager(ScreenManager):
     pass
 
 
-
-
-
-
 # Designate kv design file
 kv = Builder.load_file('main.kv')
 
