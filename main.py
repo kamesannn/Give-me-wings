@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
 from kivy.properties import NumericProperty
+from kivy.core.audio import SoundLoader
 
 
 class Background(Widget):
@@ -73,17 +74,21 @@ class GiveMeWings(App):
     pipes = []
     GRAVITY = 300
 
+    def play_bgm(self):
+        self.music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
+        self.music.play()
+
     def move_character(self, time_passed):
         character = self.root.ids.character
         character.y = character.y + character.velocity * time_passed
         character.velocity = character.velocity - self.GRAVITY * time_passed
         self.check_collision()
 
-        if character.y == ((Window.height - 96) / 4 - 33):
-            self.GRAVITY = 0
-        if character.y > ((Window.height - 96) / 4 - 33) and self.GRAVITY >= 0:
-            self.GRAVITY = 0
-            character.y = ((Window.height - 96) / 4 - 33)
+        # if character.y == ((Window.height - 96) / 4 - 33):
+        #     self.GRAVITY = 0
+        # if character.y > ((Window.height - 96) / 4 - 33) and self.GRAVITY >= 0:
+        #     self.GRAVITY = 0
+        #     character.y = ((Window.height - 96) / 4 - 33)
 
     def check_collision(self):
         character = self.root.ids.character
@@ -141,6 +146,8 @@ class GiveMeWings(App):
         if right_most_x <= Window.width - distance_between_pipes:
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
+
+
 
 
 GiveMeWings().run()
