@@ -11,11 +11,17 @@ from kivy.uix.switch import Switch
 
 # Define different screens
 class MainWindow(Screen):
-    pass
-
+    def startSound(self):
+        Sound = SoundLoader.load('game-start.mp3')
+        Sound.play()
+    def clickSound(self):
+        Sound = SoundLoader.load('click.mp3')
+        Sound.play()
 
 class SettingsWindow(Screen):
-    pass
+    def clickSound(self):
+        Sound = SoundLoader.load('click.mp3')
+        Sound.play()
 
 
 class WindowManager(ScreenManager):
@@ -33,6 +39,7 @@ class GiveMeWingsApp(App):
         self.music.play()
 
         return kv
+
 
 
 if __name__ == "__main__":

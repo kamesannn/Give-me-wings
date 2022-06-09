@@ -4,10 +4,10 @@ WindowManager:
 
 
 <RoundedButton@Button>
-    size_hint: (0.3, 0.2)
-    pos_hint: {"center_x": 0.8, "center_y": 1}
+    size_hint: (0.35, 0.15)
+    # pos_hint: {"center_x": 0.8, "center_y": 0.5}
     font_name: "Yomogi-Regular"
-    font_size: 38
+    font_size: 40
     color: 0,0,0,1
     background_color: (1,0,0,0)
     background_normal: ''
@@ -29,7 +29,7 @@ WindowManager:
         Rectangle:
             pos: self.pos
             size: self.size
-    BoxLayout:
+    FloatLayout:
         orientation: "vertical"
         size: root.width, root.height
         padding: 20
@@ -38,17 +38,16 @@ WindowManager:
         Label:
             text: "Give Me\n  Wings"
             color: 1,1,1,1
-            font_size: 87
+            font_size: 90
             font_name: "YujiBoku-Regular"
             size_hint: (0.9, 0.9)
-            pos_hint: {"center_x": 0.70, "center_y": 1}
+            pos_hint: {"center_x": 0.70, "center_y": 0.75}
 
         Image:
-            source: 'images/wings4.gif'
+            source: "images/wings3.gif"
             # pos: self.pos
-
-            pos_hint: {"center_x": 0.3, "center_y": 0.42}
-            size_hint: (0.6, 0.62)
+            pos_hint: {"center_x": 0.28, "center_y": 0.32}
+            size_hint: (0.4, 0.2)
             # size: root.size
             # allow_stretch: True
             # keep_ratio: False
@@ -57,6 +56,8 @@ WindowManager:
         RoundedButton:
             text: "Start"
             on_press: print("Start!")
+            pos_hint: {"center_x": 0.76, "center_y": 0.35}
+            on_press: root.startSound()
 
         RoundedButton:
             text: "Settings"
@@ -64,6 +65,9 @@ WindowManager:
             on_release:
                 app.root.current = "settings"
                 root.manager.transition.direction = "right"
+            pos_hint: {"center_x": 0.76, "center_y": 0.15}
+            on_press: root.clickSound()
+
 
 
 
@@ -100,9 +104,11 @@ WindowManager:
         text: "Back"
         color: 0,0,0,1
         on_press: print("back to main")
+        on_press: root.clickSound()
         on_release:
             app.root.current = "main"
             root.manager.transition.direction = "left"
+
 
     Image:
         source: 'images/arrow.png'
