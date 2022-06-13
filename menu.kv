@@ -1,0 +1,202 @@
+#:include pipe.kv
+<ScreenManager>:
+    MainWindow:
+        name: 'main'
+    SettingsWindow:
+        name: 'settings'
+    GameWindow:
+        name: 'game'
+
+
+<RoundedButton@Button>
+    size_hint: (0.35, 0.15)
+    # pos_hint: {"center_x": 0.8, "center_y": 0.5}
+    font_name: "Yomogi-Regular"
+    font_size: 40
+    color: 0,0,0,1
+    background_color: (1,0,0,0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (196/255, 196/255, 196/255, 1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [18]
+
+
+<MainWindow>:
+    # name: "main"
+
+    canvas.before:
+        Color:
+            rgba: (86/255, 164/255, 255/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    FloatLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: "Give Me\n  Wings"
+            color: 1,1,1,1
+            font_size: 90
+            font_name: "YujiBoku-Regular"
+            size_hint: (0.9, 0.9)
+            pos_hint: {"center_x": 0.70, "center_y": 0.75}
+
+        Image:
+            source: "images/wings3.gif"
+            # pos: self.pos
+            pos_hint: {"center_x": 0.28, "center_y": 0.32}
+            size_hint: (0.4, 0.2)
+            # size: root.size
+            # allow_stretch: True
+            # keep_ratio: False
+            # anim_delay: -1
+
+        RoundedButton:
+            text: "Start"
+            on_press: print("Start!")
+            pos_hint: {"center_x": 0.76, "center_y": 0.35}
+            on_press: root.startSound()
+
+        RoundedButton:
+            text: "Settings"
+            on_press: print("Settings")
+            on_release:
+                app.root.current = "settings"
+                root.manager.transition.direction = "right"
+            pos_hint: {"center_x": 0.76, "center_y": 0.15}
+            on_press: root.clickSound()
+
+
+
+
+
+<SettingsWindow>:
+    # name: "settings"
+
+    canvas.before:
+        # add the rectangle with the image.
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "images/cloud-example.jpg"
+
+    Label:
+        background_color: (1,0,0,0)
+        background_normal: ''
+        size_hint: (0.8, 0.6)
+        pos_hint: {"center_x": 0.50, "center_y": 0.50}
+
+        canvas.before:
+            Color:
+                rgba: (253/255, 150/255, 56/255, 1)
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [18]
+
+    Button:
+        size_hint: (0.16, 0.1)
+        pos_hint: {"center_x": 0.23, "center_y": 0.73}
+        font_size: 25
+        background_color: 1,0,0,0
+        text: "Back"
+        color: 0,0,0,1
+        on_press: print("back to main")
+        on_press: root.clickSound()
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "left"
+
+
+    Image:
+        source: 'images/arrow.png'
+        size_hint: (0.06, 0.06)
+        # allow_stretch: True
+        pos_hint: {"center_x": 0.16, "center_y": 0.73}
+
+    Label:
+        text: "Music volume"
+        color: 0,0,0,1
+        font_size: 27
+        font_name: "Yomogi-Regular"
+        size_hint: (0.9, 0.9)
+        pos_hint: {"center_x": 0.26, "center_y": 0.56}
+
+    Label:
+        text: "Sound effect"
+        color: 0,0,0,1
+        font_size: 27
+        font_name: "Yomogi-Regular"
+        size_hint: (0.9, 0.9)
+        pos_hint: {"center_x": 0.26, "center_y": 0.39}
+
+    Slider:
+        id: volume_bar
+        min: 1
+        max: 100
+        value: 50
+        orientation: 'horizontal'
+        pos_hint: {'center_x': 0.7, 'center_y': 0.55}
+        size_hint: (0.3,0.3)
+
+    Slider:
+        id: effect_bar
+        min: 1
+        max: 100
+        value: 50
+        orientation: 'horizontal'
+        pos_hint: {'center_x': 0.7, 'center_y': 0.38}
+        size_hint: (0.3,0.3)
+
+
+<GameWindow>:
+    # name: "game"
+
+    # FloatLayout:
+    Background:
+        id: GameWindow
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "bg.png"
+            Rectangle:
+                size: self.width, 96
+                pos: self.pos[0], self.pos[1]
+                texture: self.floor_texture
+    Label:
+        id: score
+        size_hint_y: None
+        height: 96
+        text: "0"
+        font_size: 40
+    Label:
+        size_hint: None, None
+        pos: 280, 1
+        text: "Score: "
+        font_size: 40
+    Character:
+        source: "run1.png"
+        size_hint: None, None
+        size: 84, 107
+        pos: 70, root.height - 250
+        id: character
+    Button:
+        size_hint: (0.16, 0.1)
+        pos_hint: {"center_x": 0.23, "center_y": 0.73}
+        font_size: 25
+        background_color: 1,0,0,0
+        text: "Settings"
+        color: 0,0,0,1
+        on_press: print("Settings menu")
+        # on_press: root.clickSound()
+        on_release:
+            app.root.current = "settings"
+            root.manager.transition.direction = "left"

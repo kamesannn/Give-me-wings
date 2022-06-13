@@ -1,16 +1,38 @@
 from kivy.app import App
-from kivy.core.window import Window
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
+from kivy.lang import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.audio import SoundLoader
 from kivy.uix.image import Image
+from kivy.core.window import Window
+from pipe import Pipe
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.slider import Slider
+from kivy.uix.switch import Switch
+from kivy.properties import NumericProperty
 from kivy.clock import Clock
 from random import randint
-from pipe import Pipe
-from kivy.properties import NumericProperty
-from kivy.core.audio import SoundLoader
+from kivy.properties import ObjectProperty
+from kivy.uix.widget import Widget
 
 
-class Background(Widget):
+
+
+# Define different screens
+class MainWindow(Screen):
+    def startSound(self):
+        Sound = SoundLoader.load('game-start.mp3')
+        Sound.play()
+    def clickSound(self):
+        Sound = SoundLoader.load('click.mp3')
+        Sound.play()
+
+class SettingsWindow(Screen):
+    def clickSound(self):
+        Sound = SoundLoader.load('click.mp3')
+        Sound.play()
+
+class GameWindow(Screen):
+
     # cloud_texture = ObjectProperty(None)
     floor_texture = ObjectProperty(None)
 
@@ -33,7 +55,8 @@ class Background(Widget):
     def scroll_textures(self, time_passed):
         # Update the uvpos of the texture
         # self.cloud_texture.uvpos = ( (self.cloud_texture.uvpos[0] + time_passed)%Window.width, self.cloud_texture.uvpos[1])
-        self.floor_texture.uvpos = ( (self.floor_texture.uvpos[0] + time_passed)%Window.width, self.floor_texture.uvpos[1])
+        self.floor_texture.uvpos = (
+        (self.floor_texture.uvpos[0] + time_passed) % Window.width, self.floor_texture.uvpos[1])
 
         # Redraw the texture
         # texture = self.property('cloud_texture')
@@ -70,11 +93,17 @@ class Character(Image):
             self.velocity = -100
 
 
-class GiveMeWings(App):
+# Designate kv design file
+# kv = Builder.load_file("menu.kv")
+
+
+class GiveMeApp(App):
+    # playing bgm
     pipes = []
     GRAVITY = 300
     music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
     was_colliding = False
+
 
     def build(self):
         self.music.play()
@@ -93,9 +122,9 @@ class GiveMeWings(App):
             if pipe.collide_widget(character):
                 is_colliding = True
                 # Check if character is between the gap
-                if character.y < (pipe.pipe_center - pipe.GAP_SIZE/2.0):
+                if character.y < (pipe.pipe_center - pipe.GAP_SIZE / 2.0):
                     self.game_over()
-                if character.top > (pipe.pipe_center + pipe.GAP_SIZE/2.0):
+                if character.top > (pipe.pipe_center + pipe.GAP_SIZE / 2.0):
                     self.game_over()
         # if character.y < 96:
         #     self.game_over()
@@ -103,7 +132,7 @@ class GiveMeWings(App):
             self.game_over()
 
         if self.was_colliding and not is_colliding:
-            self.root.ids.score.text = str(int(self.root.ids.score.text)+1)
+            self.root.ids.score.text = str(int(self.root.ids.score.text) + 1)
         self.was_colliding = is_colliding
 
     def game_over(self):
@@ -116,7 +145,7 @@ class GiveMeWings(App):
     def next_frame(self, time_passed):
         self.move_character(time_passed)
         self.move_pipes(time_passed)
-        self.root.ids.background.scroll_textures(time_passed)
+        self.root.ids.GameWindow.scroll_textures(time_passed)
 
     def on_start(self):
         # self.root.ids.score.text = "0"
@@ -124,16 +153,16 @@ class GiveMeWings(App):
         self.pipes = []
         # Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/60.)
         # Clock.schedule_interval(self.move_character, 1/60.)
-        self.frames = Clock.schedule_interval(self.next_frame, 1/60.)
+        self.frames = Clock.schedule_interval(self.next_frame, 1 / 60.)
 
         # Create pipes
         num_pipes = 200
         distance_between_pipes = Window.width / 3
         for i in range(num_pipes):
             pipe = Pipe()
-            pipe.pipe_center = randint(96 + 100, self.root.height - 100)
+            # pipe.pipe_center = randint(96 + 100, self.root.height - 100)
             pipe.size_hint = (None, None)
-            pipe.pos = (Window.width + i*distance_between_pipes, 96)
+            pipe.pos = (Window.width + i * distance_between_pipes, 96)
             pipe.size = (64, self.root.height - 96)
 
             self.pipes.append(pipe)
@@ -154,7 +183,8 @@ class GiveMeWings(App):
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
 
+        return ScreenManager()
 
 
-
-GiveMeWings().run()
+# if __name__ == "__main__":
+GiveMeApp().run()
