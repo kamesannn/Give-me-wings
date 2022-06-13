@@ -73,9 +73,10 @@ class Character(Image):
 class GiveMeWings(App):
     pipes = []
     GRAVITY = 300
+    music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
+    was_colliding = False
 
-    def play_bgm(self):
-        self.music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
+    def build(self):
         self.music.play()
 
     def move_character(self, time_passed):
@@ -84,29 +85,33 @@ class GiveMeWings(App):
         character.velocity = character.velocity - self.GRAVITY * time_passed
         self.check_collision()
 
-        # if character.y == ((Window.height - 96) / 4 - 33):
-        #     self.GRAVITY = 0
-        # if character.y > ((Window.height - 96) / 4 - 33) and self.GRAVITY >= 0:
-        #     self.GRAVITY = 0
-        #     character.y = ((Window.height - 96) / 4 - 33)
-
     def check_collision(self):
         character = self.root.ids.character
         # Go through each pipe and check if it collides
+        is_colliding = False
         for pipe in self.pipes:
             if pipe.collide_widget(character):
-                # is_colliding = True
+                is_colliding = True
                 # Check if character is between the gap
-                if character.y < (pipe.pipe_center - pipe.GAP_SIZE / 2.0):
+                if character.y < (pipe.pipe_center - pipe.GAP_SIZE/2.0):
                     self.game_over()
-                if character.top > (pipe.pipe_center + pipe.GAP_SIZE / 2.0):
+                if character.top > (pipe.pipe_center + pipe.GAP_SIZE/2.0):
                     self.game_over()
+        # if character.y < 96:
+        #     self.game_over()
+        if character.top > Window.height:
+            self.game_over()
+
+        if self.was_colliding and not is_colliding:
+            self.root.ids.score.text = str(int(self.root.ids.score.text)+1)
+        self.was_colliding = is_colliding
 
     def game_over(self):
         self.root.ids.character.pos = (70, ((self.root.height - 96) / 4 - 33))
         for pipe in self.pipes:
             self.root.remove_widget(pipe)
         self.frames.cancel()
+        self.music.stop()
 
     def next_frame(self, time_passed):
         self.move_character(time_passed)
@@ -114,6 +119,8 @@ class GiveMeWings(App):
         self.root.ids.background.scroll_textures(time_passed)
 
     def on_start(self):
+        self.root.ids.score.text = "0"
+        self.was_colliding = False
         self.pipes = []
         # Clock.schedule_interval(self.root.ids.background.scroll_textures, 1/60.)
         # Clock.schedule_interval(self.move_character, 1/60.)

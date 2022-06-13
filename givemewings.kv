@@ -18,9 +18,14 @@ FloatLayout:
         height: 96
         text: "0"
         font_size: 40
+    Label:
+        size_hint: None, None
+        pos: 280, 1
+        text: "Score: "
+        font_size: 40
     Character:
         source: "run1.png"
         size_hint: None, None
         size: 84, 107
-        pos: 70, ((root.height - 96) / 4 - 33)
+        pos: 70, root.height - 250
         id: character
