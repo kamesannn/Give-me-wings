@@ -1,11 +1,6 @@
-#:include pipe.kv
-<ScreenManager>:
+WindowManager:
     MainWindow:
-        name: 'main'
     SettingsWindow:
-        name: 'settings'
-    GameWindow:
-        name: 'game'
 
 
 <RoundedButton@Button>
@@ -26,7 +21,7 @@
 
 
 <MainWindow>:
-    # name: "main"
+    name: "main"
 
     canvas.before:
         Color:
@@ -78,7 +73,7 @@
 
 
 <SettingsWindow>:
-    # name: "settings"
+    name: "settings"
 
     canvas.before:
         # add the rectangle with the image.
@@ -154,49 +149,3 @@
         orientation: 'horizontal'
         pos_hint: {'center_x': 0.7, 'center_y': 0.38}
         size_hint: (0.3,0.3)
-
-
-<GameWindow>:
-    # name: "game"
-
-    # FloatLayout:
-    Background:
-        id: GameWindow
-        canvas.before:
-            Rectangle:
-                size: self.size
-                pos: self.pos
-                source: "bg.png"
-            Rectangle:
-                size: self.width, 96
-                pos: self.pos[0], self.pos[1]
-                texture: self.floor_texture
-    Label:
-        id: score
-        size_hint_y: None
-        height: 96
-        text: "0"
-        font_size: 40
-    Label:
-        size_hint: None, None
-        pos: 280, 1
-        text: "Score: "
-        font_size: 40
-    Character:
-        source: "run1.png"
-        size_hint: None, None
-        size: 84, 107
-        pos: 70, root.height - 250
-        id: character
-    Button:
-        size_hint: (0.16, 0.1)
-        pos_hint: {"center_x": 0.23, "center_y": 0.73}
-        font_size: 25
-        background_color: 1,0,0,0
-        text: "Settings"
-        color: 0,0,0,1
-        on_press: print("Settings menu")
-        # on_press: root.clickSound()
-        on_release:
-            app.root.current = "settings"
-            root.manager.transition.direction = "left"
