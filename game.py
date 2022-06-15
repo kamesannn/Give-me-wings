@@ -11,34 +11,24 @@ from kivy.core.audio import SoundLoader
 
 
 class Background(Widget):
-    # cloud_texture = ObjectProperty(None)
     floor_texture = ObjectProperty(None)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         # Create textures
-        # self.cloud_texture = Image(source="1838449.png").texture
-        # self.cloud_texture.wrap = 'repeat'
-        # self.cloud_texture.uvsize = (Window.width / self.cloud_texture.width, -1)
-
         self.floor_texture = Image(source="NicePng_minecraft-dirt-block-png_2255256.png").texture
         self.floor_texture.wrap = 'repeat'
         self.floor_texture.uvsize = (Window.width / self.floor_texture.width, -1)
 
     def on_size(self, *args):
-        # self.cloud_texture.uvsize = (self.width / self.cloud_texture.width, -1)
         self.floor_texture.uvsize = (self.width / self.floor_texture.width, -1)
 
     def scroll_textures(self, time_passed):
         # Update the uvpos of the texture
-        # self.cloud_texture.uvpos = ( (self.cloud_texture.uvpos[0] + time_passed)%Window.width, self.cloud_texture.uvpos[1])
         self.floor_texture.uvpos = ( (self.floor_texture.uvpos[0] + time_passed)%Window.width, self.floor_texture.uvpos[1])
 
         # Redraw the texture
-        # texture = self.property('cloud_texture')
-        # texture.dispatch(self)
-
         texture = self.property('floor_texture')
         texture.dispatch(self)
 
@@ -55,18 +45,12 @@ class Character(Image):
 
     velocity = NumericProperty(0)
 
-    # def character_image(self, time_passed):
-    #     if time_passed % 2 == 0:
-    #         self.source = "run1.png"
-    #     else:
-    #         self.source = "run2.png"
-
     def _on_key_down(self,keyboard,keycode,text,modifiers):
         if text == "w":
             self.source = "jump1.png"
             self.velocity = 150
         if text == "s":
-            self.source = "slide.png"
+            self.source = "jump2.png"
             self.velocity = -100
 
 
@@ -156,5 +140,5 @@ class GiveMeWings(App):
 
 
 
-if __name__ == "__game__":
+if __name__ == "__main__":
     GiveMeWings().run()

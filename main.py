@@ -17,22 +17,38 @@ from game import GiveMeWings
 from game import Background
 from game import Character
 
-
+Builder.load_file("givemewings.kv")
 
 
 # Define different screens
 class MainWindow(Screen):
+    on_game = False
+    game_over = False
+
+    menu_widget = ObjectProperty()
+
     def startSound(self):
         Sound = SoundLoader.load('game-start.mp3')
         Sound.play()
+
     def clickSound(self):
         Sound = SoundLoader.load('click.mp3')
         Sound.play()
+
+    def on_touch_down(self, touch):
+        return super(Screen, self).on_touch_down(touch)
+
+    def start_game_pressed(self):
+        self.on_game = True
+        self.menu_widget.opacity = 0
 
 class SettingsWindow(Screen):
     def clickSound(self):
         Sound = SoundLoader.load('click.mp3')
         Sound.play()
+
+# class InstructionWindow(Screen):
+
 
 
 class WindowManager(ScreenManager):
