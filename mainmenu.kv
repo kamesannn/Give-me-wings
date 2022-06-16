@@ -19,12 +19,14 @@ WindowManager:
             pos: self.pos
             radius: [18]
 
-
-<MainWindow>:
-    name: "main"
+<MainMenu>:
     menu_widget: menu_widget
     MainMenu:
         id: menu_widget
+
+<MainWindow>:
+    name: "main"
+
     canvas.before:
         Color:
             rgba: (86/255, 164/255, 255/255, 1)

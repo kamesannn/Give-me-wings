@@ -83,6 +83,7 @@ class GiveMeWings(App):
                     self.game_over()
         # if character.y < 96:
         #     self.game_over()
+        #     MainWindow().game_over = True
         if character.top > Window.height:
             self.game_over()
 

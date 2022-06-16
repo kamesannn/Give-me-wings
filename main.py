@@ -40,7 +40,9 @@ class MainWindow(Screen):
 
     def start_game_pressed(self):
         self.on_game = True
-        self.menu_widget.opacity = 0
+        # self.menu_widget.opacity = 0
+        GiveMeWings().run()
+
 
 class SettingsWindow(Screen):
     def clickSound(self):
