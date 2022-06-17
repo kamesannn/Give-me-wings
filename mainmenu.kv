@@ -62,7 +62,8 @@ WindowManager:
             on_press: print("Start!")
             pos_hint: {"center_x": 0.76, "center_y": 0.35}
             on_press: root.startSound()
-            on_press: root.start_game_pressed()
+            on_release: root.start_game_pressed()
+
 
         RoundedButton:
             text: "Settings"

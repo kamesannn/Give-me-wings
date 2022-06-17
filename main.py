@@ -16,16 +16,13 @@ from kivy.uix.widget import Widget
 from game import GiveMeWings
 from game import Background
 from game import Character
+import os
 
-Builder.load_file("givemewings.kv")
+# Builder.load_file("givemewings.kv")
 
 
 # Define different screens
 class MainWindow(Screen):
-    on_game = False
-    game_over = False
-
-    menu_widget = ObjectProperty()
 
     def startSound(self):
         Sound = SoundLoader.load('game-start.mp3')
@@ -35,13 +32,12 @@ class MainWindow(Screen):
         Sound = SoundLoader.load('click.mp3')
         Sound.play()
 
-    def on_touch_down(self, touch):
-        return super(Screen, self).on_touch_down(touch)
-
     def start_game_pressed(self):
-        self.on_game = True
-        # self.menu_widget.opacity = 0
-        GiveMeWings().run()
+        os.system("python game.py")
+        # self.stop()
+        # MainWindow.close()
+
+
 
 
 class SettingsWindow(Screen):

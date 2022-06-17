@@ -8,6 +8,8 @@ from random import randint
 from pipe import Pipe
 from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
+import os
+
 
 
 class Background(Widget):
@@ -32,6 +34,12 @@ class Background(Widget):
         texture = self.property('floor_texture')
         texture.dispatch(self)
 
+    def back_to_settings(self):
+        os.system("python main.py")
+
+
+
+
 
 class Character(Image):
     def __init__(self, **kwargs):
@@ -52,6 +60,7 @@ class Character(Image):
         if text == "s":
             self.source = "jump2.png"
             self.velocity = -100
+
 
 
 class GiveMeWings(App):
@@ -138,6 +147,11 @@ class GiveMeWings(App):
         if right_most_x <= Window.width - distance_between_pipes:
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
+
+    def clickSound2(self):
+        self.music = SoundLoader.load('click.mp3')
+        self.music.play()
+
 
 
 
