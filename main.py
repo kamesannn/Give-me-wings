@@ -36,15 +36,16 @@ class MainWindow(Screen):
         self.click_sound.play()
 
     def start_game_pressed(self):
-        os.system("game.py")
+        os.system("python game.py")
         self.game_start = True
 
         if self.game_start == True:
             self.bgm.stop()
         # self.stop()
-        # MainWindow.close()
+        # Window.close()
 
-
+    def quit_pressed(self):
+        Window.close()
 
 
 class SettingsWindow(Screen):
@@ -52,8 +53,11 @@ class SettingsWindow(Screen):
         Sound = SoundLoader.load('click.mp3')
         Sound.play()
 
-# class InstructionWindow(Screen):
 
+class InstructionWindow(Screen):
+    def clickSound(self):
+        Sound = SoundLoader.load('click.mp3')
+        Sound.play()
 
 
 class WindowManager(ScreenManager):
