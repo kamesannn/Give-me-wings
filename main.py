@@ -23,17 +23,24 @@ import os
 
 # Define different screens
 class MainWindow(Screen):
+    start_sound = SoundLoader.load('game-start.mp3')
+    click_sound = SoundLoader.load('click.mp3')
+    bgm = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
+    game_start = False
+    game_over = False
 
     def startSound(self):
-        Sound = SoundLoader.load('game-start.mp3')
-        Sound.play()
+        self.start_sound.play()
 
     def clickSound(self):
-        Sound = SoundLoader.load('click.mp3')
-        Sound.play()
+        self.click_sound.play()
 
     def start_game_pressed(self):
-        os.system("python game.py")
+        os.system("game.py")
+        self.game_start = True
+
+        if self.game_start == True:
+            self.bgm.stop()
         # self.stop()
         # MainWindow.close()
 
@@ -60,8 +67,9 @@ kv = Builder.load_file('mainmenu.kv')
 class MainMenu(App):
     # playing bgm
     def build(self):
-        self.music = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
-        self.music.play()
+        self.bgm = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
+        self.bgm.play()
+
 
 
         return kv

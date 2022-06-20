@@ -18,11 +18,6 @@ WindowManager:
             pos: self.pos
             radius: [18]
 
-<MainMenu>:
-    menu_widget: menu_widget
-    MainMenu:
-        id: menu_widget
-
 <MainWindow>:
     name: "main"
 
@@ -90,10 +85,6 @@ WindowManager:
                 # root.manager.transition.direction = "right"
             pos_hint: {"center_x": 0.71, "center_y": 0.09}
             on_press: root.clickSound()
-
-
-
-
 
 <SettingsWindow>:
     name: "settings"
@@ -172,3 +163,4 @@ WindowManager:
         orientation: 'horizontal'
         pos_hint: {'center_x': 0.7, 'center_y': 0.38}
         size_hint: (0.3,0.3)
+

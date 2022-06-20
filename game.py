@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.core.window import Window
+from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.uix.image import Image
@@ -10,7 +11,9 @@ from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
 import os
 
-
+state_game_start = True
+state_game_over = False
+Builder.load_file("gameoverwindow.kv")
 
 class Background(Widget):
     floor_texture = ObjectProperty(None)
@@ -38,9 +41,6 @@ class Background(Widget):
         os.system("python main.py")
 
 
-
-
-
 class Character(Image):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -62,12 +62,12 @@ class Character(Image):
             self.velocity = -100
 
 
-
 class GiveMeWings(App):
     pipes = []
     GRAVITY = 300
     music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
     was_colliding = False
+
 
     def build(self):
         self.music.play()
@@ -106,6 +106,7 @@ class GiveMeWings(App):
             self.root.remove_widget(pipe)
         self.frames.cancel()
         self.music.stop()
+        self.state_game_over = True
 
     def next_frame(self, time_passed):
         self.move_character(time_passed)
