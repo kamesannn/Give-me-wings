@@ -39,7 +39,6 @@ class MainWindow(Screen):
 
     def stopBgm(self):
         self.bgm.stop()
-
         # Window.close()
 
     def quit_pressed(self):
@@ -67,9 +66,8 @@ kv = Builder.load_file('mainmenu.kv')
 
 
 class MainMenu(App):
-    # playing bgm
     def build(self):
-        
+
         return kv
 
 if __name__ == "__main__":
