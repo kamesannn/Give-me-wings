@@ -59,7 +59,7 @@ class Character(Image):
             self.velocity = 150
         if text == "s":
             self.source = "jump2.png"
-            self.velocity = -100
+            self.velocity = -150
 
 
 class GiveMeWings(App):

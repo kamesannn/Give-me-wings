@@ -38,7 +38,7 @@ WindowManager:
             font_size: 90
             font_name: "YujiBoku-Regular"
             size_hint: (0.9, 0.9)
-            pos_hint: {"center_x": 0.70, "center_y": 0.78}
+            pos_hint: {"center_x": 0.67, "center_y": 0.80}
         Image:
             source: 'images/wings4.gif'
             # pos: self.pos
@@ -51,7 +51,7 @@ WindowManager:
         RoundedButton:
             text: "Start"
             on_press: print("Start!")
-            pos_hint: {"center_x": 0.71, "center_y": 0.48}
+            pos_hint: {"center_x": 0.78, "center_y": 0.50}
             on_press: root.startSound()
             on_release: root.start_game_pressed()
         RoundedButton:
@@ -60,7 +60,7 @@ WindowManager:
             on_release:
                 app.root.current = "settings"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.71, "center_y": 0.35}
+            pos_hint: {"center_x": 0.78, "center_y": 0.37}
             on_press: root.clickSound()
         RoundedButton:
             text: "How To Play"
@@ -68,12 +68,12 @@ WindowManager:
             on_release:
                 app.root.current = "instruction"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.71, "center_y": 0.22}
+            pos_hint: {"center_x": 0.78, "center_y": 0.24}
             on_press: root.clickSound()
         RoundedButton:
             text: "Quit"
             on_press: print("Quit")
-            pos_hint: {"center_x": 0.71, "center_y": 0.09}
+            pos_hint: {"center_x": 0.78, "center_y": 0.11}
             on_press: root.clickSound()
             on_press: root.quit_pressed()
 
@@ -182,3 +182,5 @@ WindowManager:
         size_hint: (0.06, 0.06)
         # allow_stretch: True
         pos_hint: {"center_x": 0.16, "center_y": 0.73}
+    Image:
+        source: 'howtoplay.png'
