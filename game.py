@@ -15,6 +15,7 @@ state_game_start = True
 state_game_over = False
 Builder.load_file("gameoverwindow.kv")
 
+
 class Background(Widget):
     floor_texture = ObjectProperty(None)
 
@@ -92,7 +93,6 @@ class GiveMeWings(App):
                     self.game_over()
         if character.y < Window.minimum_height:
             self.game_over()
-            # MainWindow().game_over = True
         if character.top > Window.height:
             self.game_over()
 

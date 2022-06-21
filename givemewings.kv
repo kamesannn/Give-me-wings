@@ -2,7 +2,6 @@
 #:import gameoverwindow gameoverwindow
 
 FloatLayout:
-    name: "game"
     GameOverWindow:
     Background:
         id: background
@@ -20,15 +19,13 @@ FloatLayout:
         size_hint_y: None
         height: 96
         text: "0"
-        font_size: 32
-    Label:
-        size_hint: None, None
-        pos: 279, 0.5
-        text: "Score: "
-        font_size: 32
+        font_size: 28
+        font_name: "advanced_pixel_lcd-7"
+        color: 1,1,1,1
     Character:
         source: "jump1.png"
         size_hint: None, None
         size: 84, 107
         pos: 70, root.height - 250
         id: character
+
