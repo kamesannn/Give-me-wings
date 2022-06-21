@@ -1,0 +1,13 @@
+<GameOverWindow>:
+    Label:
+        background_color: (1,0,0,0)
+        background_normal: ''
+        size_hint: (0.8, 0.6)
+        pos_hint: {"center_x": 0.50, "center_y": 0.50}
+        canvas.before:
+            Color:
+                rgba: (253/255, 150/255, 56/255, 1)
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [18]
