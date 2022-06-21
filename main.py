@@ -71,7 +71,7 @@ kv = Builder.load_file('mainmenu.kv')
 class MainMenu(App):
     # playing bgm
     def build(self):
-        self.bgm = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
+        self.bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
         self.bgm.play()
 
 

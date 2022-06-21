@@ -41,7 +41,6 @@ WindowManager:
             pos_hint: {"center_x": 0.67, "center_y": 0.80}
         Image:
             source: 'images/wings4.gif'
-            # pos: self.pos
             pos_hint: {"center_x": 0.28, "center_y": 0.32}
             size_hint: (0.4, 0.2)
             # size: root.size
@@ -156,7 +155,7 @@ WindowManager:
     Label:
         background_color: (1,0,0,0)
         background_normal: ''
-        size_hint: (0.8, 0.6)
+        size_hint: (0.9, 0.8)
         pos_hint: {"center_x": 0.50, "center_y": 0.50}
         canvas.before:
             Color:
@@ -167,7 +166,7 @@ WindowManager:
                 radius: [18]
     Button:
         size_hint: (0.16, 0.1)
-        pos_hint: {"center_x": 0.23, "center_y": 0.73}
+        pos_hint: {"center_x": 0.16, "center_y": 0.85}
         font_size: 25
         background_color: 1,0,0,0
         text: "Back"
@@ -181,6 +180,8 @@ WindowManager:
         source: 'images/arrow.png'
         size_hint: (0.06, 0.06)
         # allow_stretch: True
-        pos_hint: {"center_x": 0.16, "center_y": 0.73}
+        pos_hint: {"center_x": 0.09, "center_y": 0.85}
     Image:
         source: 'howtoplay.png'
+        pos_hint: {"center_x": 0.50, "center_y": 0.46}
+        size_hint: (0.98, 0.70)
