@@ -18,16 +18,14 @@ from game import Background
 from game import Character
 import os
 
-# Builder.load_file("givemewings.kv")
 
 
 # Define different screens
 class MainWindow(Screen):
     start_sound = SoundLoader.load('game-start.mp3')
     click_sound = SoundLoader.load('click.mp3')
-    bgm = SoundLoader.load('03-Meydan-Tired-of-life.mp3')
-    game_start = False
-    game_over = False
+    bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
+    bgm.play()
 
     def startSound(self):
         self.start_sound.play()
@@ -35,13 +33,13 @@ class MainWindow(Screen):
     def clickSound(self):
         self.click_sound.play()
 
+
     def start_game_pressed(self):
         os.system("python game.py")
-        self.game_start = True
 
-        if self.game_start == True:
-            self.bgm.stop()
-        # self.stop()
+    def stopBgm(self):
+        self.bgm.stop()
+
         # Window.close()
 
     def quit_pressed(self):
@@ -71,11 +69,7 @@ kv = Builder.load_file('mainmenu.kv')
 class MainMenu(App):
     # playing bgm
     def build(self):
-        self.bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
-        self.bgm.play()
-
-
-
+        
         return kv
 
 if __name__ == "__main__":

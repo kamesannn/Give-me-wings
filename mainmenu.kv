@@ -40,7 +40,7 @@ WindowManager:
             size_hint: (0.9, 0.9)
             pos_hint: {"center_x": 0.67, "center_y": 0.80}
         Image:
-            source: 'images/wings4.gif'
+            source: 'images/wings6.gif'
             pos_hint: {"center_x": 0.28, "center_y": 0.32}
             size_hint: (0.4, 0.2)
             # size: root.size
@@ -53,6 +53,7 @@ WindowManager:
             pos_hint: {"center_x": 0.78, "center_y": 0.50}
             on_press: root.startSound()
             on_release: root.start_game_pressed()
+            on_press: root.stopBgm()
         RoundedButton:
             text: "Settings"
             on_press: print("Settings")
