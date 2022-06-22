@@ -11,13 +11,15 @@ WindowManager:
     color: 0,0,0,1
     background_color: (1,0,0,0)
     background_normal: ''
-    canvas.before:
-        Color:
-            rgba: (196/255, 196/255, 196/255, 1)
-        RoundedRectangle:
-            size: self.size
-            pos: self.pos
-            radius: [18]
+
+<Cloud@Label>
+    Image:
+        source: 'images/cloud_button1.png'
+        size: 190, 290
+        center_x: self.parent.center_x
+        center_y: self.parent.center_y
+        allow_stretch: True
+
 
 <MainWindow>:
     name: "main"
@@ -47,35 +49,45 @@ WindowManager:
             # allow_stretch: True
             # keep_ratio: False
             # anim_delay: -1
+        Cloud:
+            pos_hint: {"center_x": 0.61, "center_y": 0.44}
         RoundedButton:
             text: "Start"
             on_press: print("Start!")
-            pos_hint: {"center_x": 0.78, "center_y": 0.50}
+            pos_hint: {"center_x": 0.61, "center_y": 0.44}
             on_press: root.startSound()
             on_release: root.start_game_pressed()
             on_press: root.stopBgm()
+        Cloud:
+            pos_hint: {"center_x": 0.86, "center_y": 0.35}
         RoundedButton:
             text: "Settings"
             on_press: print("Settings")
             on_release:
                 app.root.current = "settings"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.78, "center_y": 0.37}
+            pos_hint: {"center_x": 0.86, "center_y": 0.35}
             on_press: root.clickSound()
+        Cloud:
+            pos_hint: {"center_x": 0.61, "center_y": 0.22}
         RoundedButton:
             text: "How To Play"
             on_press: print("Instruction")
             on_release:
                 app.root.current = "instruction"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.78, "center_y": 0.24}
+            pos_hint: {"center_x": 0.61, "center_y": 0.22}
             on_press: root.clickSound()
+        Cloud:
+            pos_hint: {"center_x": 0.86, "center_y": 0.11}
         RoundedButton:
             text: "Quit"
             on_press: print("Quit")
-            pos_hint: {"center_x": 0.78, "center_y": 0.11}
+            pos_hint: {"center_x": 0.86, "center_y": 0.11}
             on_press: root.clickSound()
             on_press: root.quit_pressed()
+
+
 
 <SettingsWindow>:
     name: "settings"
@@ -180,7 +192,6 @@ WindowManager:
     Image:
         source: 'images/arrow.png'
         size_hint: (0.06, 0.06)
-        # allow_stretch: True
         pos_hint: {"center_x": 0.09, "center_y": 0.85}
     Image:
         source: 'howtoplay.png'
