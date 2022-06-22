@@ -22,6 +22,7 @@ import os
 class MainWindow(Screen):
     start_sound = SoundLoader.load('game-start.mp3')
     click_soundeffect = SoundLoader.load('click.mp3')
+    bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
 
     def start_click_sound(self):
         self.start_sound.play()
@@ -30,6 +31,7 @@ class MainWindow(Screen):
         os.system("python game.py")
         GiveMeWings().state_game_start = True
         Window.close()
+        self.bgm.stop()
 
     def quit_pressed(self):
         Window.close()
