@@ -1,7 +1,14 @@
+<Restart@ButtonBehavior+Image>:
+    source: 'restart.png'
+    size: 90, 90
 
-
+<BackToMain@ButtonBehavior+Image>:
+    source: 'backtomain.png'
+    size: 90, 90
 
 <GameOverWindow>:
+    window_property: gameoverwindow
+    id: gameoverwindow
     Label:
         size_hint: (0.8, 0.6)
         pos_hint: {"center_x": 0.50, "center_y": 0.50}
@@ -9,21 +16,26 @@
             Color:
                 rgba: (253/255, 150/255, 56/255, 1)
             RoundedRectangle:
-                size: 500, 400
-                pos: 150, 120
+                size: 500, 300
+                pos: 150, 160
                 radius: [18]
     Label:
-        text: "Your Score:"
-        color: 1,1,1,1
-        font_size: 14
-        font_name: "advanced_pixel_lcd-7"
-        pos: 350, 420
-    Label:
-        id: display_score
-        text: "0"
+        text: "GAME OVER!"
         color: 1,1,1,1
         font_size: 32
         font_name: "advanced_pixel_lcd-7"
-        pos: 350, 250
+        pos: 364, 290
+    Restart:
+        pos: 260, 188
+    BackToMain:
+        pos: 440, 188
+
+
+
+
+
+
+
+
 
 
