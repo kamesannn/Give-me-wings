@@ -7,6 +7,7 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
+import gameoverwindow
 from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
 import os
@@ -148,7 +149,6 @@ class GiveMeWings(App):
         if right_most_x <= Window.width - distance_between_pipes:
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
-
 
 
 if __name__ == "__main__":
