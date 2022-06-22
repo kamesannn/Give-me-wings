@@ -7,7 +7,6 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
-from gameoverwindow import GameOverWindow
 from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
 import os
@@ -74,8 +73,8 @@ class GiveMeWings(App):
     def build(self):
         self.music.play()
 
-    # def game_over_score(self):
-
+    def game_over_score(self):
+        return str(self.root.ids.score)
 
     def move_character(self, time_passed):
         character = self.root.ids.character
