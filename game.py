@@ -73,9 +73,6 @@ class GiveMeWings(App):
     def build(self):
         self.music.play()
 
-    def game_over_score(self):
-        return str(self.root.ids.score)
-
     def move_character(self, time_passed):
         character = self.root.ids.character
         character.y = character.y + character.velocity * time_passed
