@@ -52,7 +52,8 @@ WindowManager:
             on_press: print("Start!")
             pos_hint: {"center_x": 0.58, "center_y": 0.44}
             on_press: root.start_click_sound()
-            on_release: root.start_game_pressed()
+            on_press: root.start_game_pressed()
+            on_press: root.start_close_window()
         Cloud:
             pos_hint: {"center_x": 0.83, "center_y": 0.35}
         RoundedButton:

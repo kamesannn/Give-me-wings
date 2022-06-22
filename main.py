@@ -29,6 +29,8 @@ class MainWindow(Screen):
     def start_game_pressed(self):
         os.system("python game.py")
         GiveMeWings().state_game_start = True
+
+    def start_close_window(self):
         Window.close()
 
     def quit_pressed(self):
