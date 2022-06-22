@@ -6,7 +6,7 @@ WindowManager:
 <RoundedButton@Button>
     size_hint: (0.28, 0.10)
     font_name: "Yomogi-Regular"
-    font_size: 33
+    font_size: 29
     color: 0,0,0,1
     background_color: (1,0,0,0)
     background_normal: ''
@@ -14,7 +14,7 @@ WindowManager:
 <Cloud@Label>
     Image:
         source: 'images/cloud_button1.png'
-        size: 190, 290
+        size: 220, 320
         center_x: self.parent.center_x
         center_y: self.parent.center_y
         allow_stretch: True
@@ -39,49 +39,46 @@ WindowManager:
             font_size: 90
             font_name: "YujiBoku-Regular"
             size_hint: (0.9, 0.9)
-            pos_hint: {"center_x": 0.67, "center_y": 0.80}
+            pos_hint: {"center_x": 0.30, "center_y": 0.76}
         Image:
-            source: "images/wings6.gif"
-            pos_hint: {"center_x": 0.28, "center_y": 0.32}
-            size_hint: (0.4, 0.2)
-            # size: root.size
-            # allow_stretch: True
-            # keep_ratio: False
-            # anim_delay: -1
+            source: "images/wings.6,2.png"
+            pos_hint: {"center_x": 0.66, "center_y": 0.67}
+            size: 120, 220
+
         Cloud:
-            pos_hint: {"center_x": 0.61, "center_y": 0.44}
+            pos_hint: {"center_x": 0.58, "center_y": 0.44}
         RoundedButton:
             text: "Start"
             on_press: print("Start!")
-            pos_hint: {"center_x": 0.61, "center_y": 0.44}
+            pos_hint: {"center_x": 0.58, "center_y": 0.44}
             on_press: root.start_click_sound()
             on_release: root.start_game_pressed()
         Cloud:
-            pos_hint: {"center_x": 0.86, "center_y": 0.35}
+            pos_hint: {"center_x": 0.83, "center_y": 0.35}
         RoundedButton:
             text: "Settings"
             on_press: print("Settings")
             on_release:
                 app.root.current = "settings"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.86, "center_y": 0.35}
+            pos_hint: {"center_x": 0.83, "center_y": 0.35}
             on_press: root.click_sound()
         Cloud:
-            pos_hint: {"center_x": 0.61, "center_y": 0.22}
+            pos_hint: {"center_x": 0.58, "center_y": 0.20}
         RoundedButton:
             text: "How To Play"
             on_press: print("Instruction")
             on_release:
                 app.root.current = "instruction"
                 root.manager.transition.direction = "right"
-            pos_hint: {"center_x": 0.61, "center_y": 0.22}
+            pos_hint: {"center_x": 0.58, "center_y": 0.19}
             on_press: root.click_sound()
         Cloud:
-            pos_hint: {"center_x": 0.86, "center_y": 0.11}
+            pos_hint: {"center_x": 0.83, "center_y": 0.11}
         RoundedButton:
             text: "Quit"
             on_press: print("Quit")
-            pos_hint: {"center_x": 0.86, "center_y": 0.11}
+            pos_hint: {"center_x": 0.83, "center_y": 0.11}
             on_press: root.click_sound()
             on_press: root.quit_pressed()
 
@@ -122,7 +119,6 @@ WindowManager:
     Image:
         source: 'images/arrow.png'
         size_hint: (0.06, 0.06)
-        # allow_stretch: True
         pos_hint: {"center_x": 0.16, "center_y": 0.73}
     Label:
         text: "Music volume"
