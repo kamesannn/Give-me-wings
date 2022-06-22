@@ -55,9 +55,8 @@ WindowManager:
             text: "Start"
             on_press: print("Start!")
             pos_hint: {"center_x": 0.61, "center_y": 0.44}
-            on_press: root.startSound()
+            on_press: root.start_click_sound()
             on_release: root.start_game_pressed()
-            on_press: root.stopBgm()
         Cloud:
             pos_hint: {"center_x": 0.86, "center_y": 0.35}
         RoundedButton:
@@ -67,7 +66,7 @@ WindowManager:
                 app.root.current = "settings"
                 root.manager.transition.direction = "right"
             pos_hint: {"center_x": 0.86, "center_y": 0.35}
-            on_press: root.clickSound()
+            on_press: root.click_sound()
         Cloud:
             pos_hint: {"center_x": 0.61, "center_y": 0.22}
         RoundedButton:
@@ -77,14 +76,14 @@ WindowManager:
                 app.root.current = "instruction"
                 root.manager.transition.direction = "right"
             pos_hint: {"center_x": 0.61, "center_y": 0.22}
-            on_press: root.clickSound()
+            on_press: root.click_sound()
         Cloud:
             pos_hint: {"center_x": 0.86, "center_y": 0.11}
         RoundedButton:
             text: "Quit"
             on_press: print("Quit")
             pos_hint: {"center_x": 0.86, "center_y": 0.11}
-            on_press: root.clickSound()
+            on_press: root.click_sound()
             on_press: root.quit_pressed()
 
 
@@ -117,7 +116,7 @@ WindowManager:
         text: "Back"
         color: 0,0,0,1
         on_press: print("back to main")
-        on_press: root.clickSound()
+        on_press: root.click_sound()
         on_release:
             app.root.current = "main"
             root.manager.transition.direction = "left"
@@ -185,7 +184,7 @@ WindowManager:
         text: "Back"
         color: 0,0,0,1
         on_press: print("back to main")
-        on_press: root.clickSound()
+        on_press: root.click_sound()
         on_release:
             app.root.current = "main"
             root.manager.transition.direction = "left"

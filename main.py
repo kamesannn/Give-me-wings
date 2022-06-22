@@ -14,8 +14,6 @@ from random import randint
 from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from game import GiveMeWings
-from game import Background
-from game import Character
 import os
 
 
@@ -23,38 +21,35 @@ import os
 # Define different screens
 class MainWindow(Screen):
     start_sound = SoundLoader.load('game-start.mp3')
-    click_sound = SoundLoader.load('click.mp3')
-    bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
-    bgm.play()
+    click_soundeffect = SoundLoader.load('click.mp3')
 
-    def startSound(self):
+    def start_click_sound(self):
         self.start_sound.play()
-
-    def clickSound(self):
-        self.click_sound.play()
-
 
     def start_game_pressed(self):
         os.system("python game.py")
-
-    def stopBgm(self):
-        self.bgm.stop()
-        # Window.close()
+        GiveMeWings().state_game_start = True
+        Window.close()
 
     def quit_pressed(self):
         Window.close()
 
+    def click_sound(self):
+        self.click_soundeffect.play()
+
 
 class SettingsWindow(Screen):
-    def clickSound(self):
-        Sound = SoundLoader.load('click.mp3')
-        Sound.play()
+    click_soundeffect = SoundLoader.load('click.mp3')
+
+    def click_sound(self):
+        self.click_soundeffect.play()
 
 
 class InstructionWindow(Screen):
-    def clickSound(self):
-        Sound = SoundLoader.load('click.mp3')
-        Sound.play()
+    click_soundeffect = SoundLoader.load('click.mp3')
+
+    def click_sound(self):
+        self.click_soundeffect.play()
 
 
 class WindowManager(ScreenManager):
@@ -66,9 +61,14 @@ kv = Builder.load_file('mainmenu.kv')
 
 
 class MainMenu(App):
+    bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
+
+    # playing bgm
     def build(self):
+        self.bgm.play()
 
         return kv
+
 
 if __name__ == "__main__":
     MainMenu().run()

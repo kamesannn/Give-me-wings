@@ -7,12 +7,12 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
+from gameoverwindow import GameOverWindow
 from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
 import os
 
-state_game_start = True
-state_game_over = False
+
 Builder.load_file("gameoverwindow.kv")
 
 
@@ -68,10 +68,14 @@ class GiveMeWings(App):
     GRAVITY = 300
     music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
     was_colliding = False
-
+    state_game_start = False
+    state_game_over = False
 
     def build(self):
         self.music.play()
+
+    # def game_over_score(self):
+
 
     def move_character(self, time_passed):
         character = self.root.ids.character
@@ -148,10 +152,6 @@ class GiveMeWings(App):
         if right_most_x <= Window.width - distance_between_pipes:
             most_left_pipe = self.pipes[pipe_xs.index(min(pipe_xs))]
             most_left_pipe.x = Window.width
-
-    def clickSound2(self):
-        self.music = SoundLoader.load('click.mp3')
-        self.music.play()
 
 
 
