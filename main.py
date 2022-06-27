@@ -2,21 +2,9 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.audio import SoundLoader
-from kivy.uix.image import Image
 from kivy.core.window import Window
-from pipe import Pipe
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.slider import Slider
-from kivy.uix.switch import Switch
-from kivy.properties import NumericProperty
-from kivy.clock import Clock
-from random import randint
-from kivy.properties import ObjectProperty
-from kivy.uix.widget import Widget
 from game import GiveMeWings
 import os
-
-
 
 # Define different screens
 class MainWindow(Screen):
@@ -62,7 +50,7 @@ class WindowManager(ScreenManager):
 kv = Builder.load_file('mainmenu.kv')
 
 
-class MainMenu(App):
+class MainMenu(App):  # Main menu screen
     bgm = SoundLoader.load('magical_kid_124bpm_proud_music_preview.mp3')
 
     # playing bgm

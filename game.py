@@ -7,16 +7,14 @@ from kivy.uix.image import Image
 from kivy.clock import Clock
 from random import randint
 from pipe import Pipe
-import gameoverwindow
 from kivy.properties import NumericProperty
 from kivy.core.audio import SoundLoader
 import os
 
-
 Builder.load_file("gameoverwindow.kv")
 
 
-class Background(Widget):
+class Background(Widget):  # Background widget
     floor_texture = ObjectProperty(None)
 
     def __init__(self, **kwargs):
@@ -42,7 +40,7 @@ class Background(Widget):
         os.system("python main.py")
 
 
-class Character(Image):
+class Character(Image):  # Character Image
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._on_keyboard_closed, self)
@@ -63,12 +61,11 @@ class Character(Image):
             self.velocity = -150
 
 
-class GiveMeWings(App):
+class GiveMeWings(App):  # Game screen
     pipes = []
     GRAVITY = 300
     music = SoundLoader.load('Ultraman Nexus OST - Heroic - Extended (320 kbps).mp3')
     was_colliding = False
-    state_game_start = False
     state_game_over = False
 
     def build(self):
